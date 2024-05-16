@@ -1,1 +1,1 @@
-# python-class
+# Python repository for my classs
