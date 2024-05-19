@@ -1,0 +1,13 @@
+userin=int(input("Enter a number for bitwise operations:"));
+userin2=int(input("Enter another number for bitwise operations:"));
+an_res= userin & userin2;
+or_res=userin | userin2;
+xor_res=userin ^userin2;
+leftshift=int(5<<2);
+rightshift=int(16>>2);
+print("The output of Bitwise operators using first and second outputs are as follows");
+print("\n And",an_res);
+print("\nOR",or_res);
+print("\n XOR",xor_res);
+print("\n 5 left shifted by 2 bits:",an_res);
+print("\n 16 right shifted by 2 bits:",an_res);

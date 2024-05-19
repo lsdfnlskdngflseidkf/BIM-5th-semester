@@ -1,0 +1,12 @@
+test='python';
+teist='python';
+ting=12;
+tings=12;
+print(type(test));
+print(id(test));
+print(type(teist));
+print(id(teist));
+print(type(ting));
+print(id(ting));
+print(type(tings));
+print(id(tings));

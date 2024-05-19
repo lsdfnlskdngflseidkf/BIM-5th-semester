@@ -1,0 +1,10 @@
+firstnum= int(input('Enter the first number\n'));
+secondnum= int(input('Enter the second number\n'));
+sum=firstnum+secondnum;
+difference=firstnum-secondnum;
+product=firstnum*secondnum;
+power=firstnum**secondnum;
+print("\n",sum);
+print("\n",difference);
+print("\n",product);
+print("\n",power);
