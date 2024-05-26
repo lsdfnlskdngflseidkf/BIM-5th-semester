@@ -1,3 +1,4 @@
+#WAP that accepts year from a user and checks either it is leap year or not
 year=int(input('Enter the year to check:'))
 if(year%400==0):
     print("Leap year")

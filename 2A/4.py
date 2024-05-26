@@ -1,3 +1,6 @@
+'''
+WAP to 
+'''
 print("1.Login\n2.Forgot Password\n3.Signup")
 choice=int(input("Enter a choice:"))
 print(choice)

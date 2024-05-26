@@ -1,3 +1,4 @@
+# WAP to accept three numbers from the user and find the smallest one among them
 a=int(input('Enter the first Number:'))
 b=int(input("Enter the Second number:"))
 c=int(input("Enter the Third number:"))
