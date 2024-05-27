@@ -4,7 +4,7 @@ count=0
 while(start<=inp/2):
     if(inp%start==0):
         print("The Number is Composite Number")
-        exit();
+        exit()
     else:
         count=0
     start+=1
