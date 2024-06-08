@@ -1,14 +1,12 @@
-# WAP to accept three numbers from the user and find the smallest one among them
-a=int(input('Enter the first Number:'))
-b=int(input("Enter the Second number:"))
-c=int(input("Enter the Third number:"))
-if(a>b):
-    if(a>c):
-        print(a)
-    elif(c>a):
-        print(c)
-elif(b>a):
-    if(b>c):
-        print(b)
-    elif(c>b):
-        print(c)
+a = int(input('Enter the first Number: '))
+b = int(input('Enter the second Number: '))
+c = int(input('Enter the third Number: '))
+
+if a <= b and a <= c:
+    smallest = a
+elif b <= a and b <= c:
+    smallest = b
+else:
+    smallest = c
+
+print(f"The smallest number is: {smallest}")

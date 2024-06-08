@@ -1,12 +1,14 @@
 inp=int(input("Enter a Number:"))
 start=3
-count=0
+flag=1
+if(inp==1):
+    print("The number is 1 which is not prime or composite")
 while(start<=inp/2):
     if(inp%start==0):
         print("The Number is Composite Number")
         exit()
     else:
-        count=0
+        flag=0
     start+=1
-if(count==0):
+if(flag==0):
     print("The number is prime")
