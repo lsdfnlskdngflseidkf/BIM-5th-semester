@@ -1,6 +1,6 @@
 inp=int(input("Enter a Number:"))
 start=3
-flag=1
+flag=0
 if(inp==1):
     print("The number is 1 which is not prime or composite")
 while(start<=inp/2):
