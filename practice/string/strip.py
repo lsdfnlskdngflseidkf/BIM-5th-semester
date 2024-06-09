@@ -1,4 +1,4 @@
-example="This is an Example string"
+example="This is an Example string    "
 print(example.upper())
 print(example.lower())
 nosp=example.strip()
