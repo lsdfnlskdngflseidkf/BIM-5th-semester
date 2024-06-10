@@ -1,0 +1,41 @@
+Define a constant string containing the alphabet (e.g., "abcdefghijklmnopqrstuvwxyz").
+Create a method to validate the key. This method should:
+a. Remove all non-alphabetic characters from the key.
+b. Convert the key to lowercase.
+c. Check if the key contains 26 unique characters.
+d. Return a boolean value indicating whether the key is valid or not.
+
+Create a method for encryption that takes the plaintext and the key as input parameters. This method should:
+a. Convert the plaintext and key to lowercase.
+b. Validate the key using the method created in step 2.
+c. If the key is invalid, throw an appropriate exception.
+d. Initialize a string or a StringBuilder to store the ciphertext.
+e. Iterate over each character in the plaintext.
+f. For each alphabetic character:
+i. Find its index in the alphabet string.
+ii. Append the character from the key at the same index to the ciphertext.
+g. For each non-alphabetic character, append it to the ciphertext as is.
+h. Return the ciphertext.
+
+Create a method for decryption that takes the ciphertext and the key as input parameters. This method should:
+a. Convert the ciphertext and key to lowercase.
+b. Validate the key using the method created in step 2.
+c. If the key is invalid, throw an appropriate exception.
+d. Initialize a string or a StringBuilder to store the plaintext.
+e. Iterate over each character in the ciphertext.
+f. For each alphabetic character:
+i. Find its index in the key.
+ii. Append the character from the alphabet string at the same index to the plaintext.
+g. For each non-alphabetic character, append it to the plaintext as is.
+h. Return the plaintext.
+
+Create a main method (or a separate class/method) to test the encryption and decryption methods. This should include:
+a. Prompting the user to enter the plaintext and the key.
+b. Calling the encryption method with the provided plaintext and key.
+c. Printing the ciphertext.
+d. Calling the decryption method with the ciphertext and key.
+e. Printing the decrypted plaintext.
+Handle any exceptions that may be thrown by the encryption and decryption methods, such as invalid key exceptions.
+Optionally, you can add additional features like handling different character cases (uppercase, lowercase, or mixed case),
+ handling non-alphabetic characters in a specific way (e.g., removing them or preserving them), or providing a menu-based
+  interface for user interaction.
