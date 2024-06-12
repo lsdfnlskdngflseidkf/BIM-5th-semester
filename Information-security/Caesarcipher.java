@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Caesarcipher {
     public String alphabets;
 
@@ -38,14 +40,42 @@ public class Caesarcipher {
     }
 
     public static void main(String[] args) {
-        Caesar caesar = new Caesar();
-        String plaintext = "hello world";
-        int key = 3;
+        Caesar caesar = new Caesarcipher();
+        Scanner sc = new Scanner(System.in);
+        int key = 0;
+        String plain = "";
+        int choice = 0;
+        while (choice < 5) {
+            System.out.println(
+                    "Enter what you would like to do\n1.Enter the plaintext \n2.Enter the Key\n3.Encrypt the text and display it\n4.Decrypt the text and display it");
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the text that you would like to encrypt");
+                    plain = sc.nextLine();
+                    break;
+                case 2:
+                    System.out.println("Enter the key");
+                    key = sc.nextInt();
+                    break;
+                case 3:
+                    plain = plain.replaceAll("\\s+", "");
+                    String encrypted = caesar.encrypt(plain, key);
+                    System.out.println("Encrypted: " + encrypted);
+                    break;
+                case 4:
+                    String decrypted = caesar.decrypt(encrypted, key);
+                    System.out.println("Decrypted: " + decrypted);
+                    break;
 
-        String encrypted = caesar.encrypt(plaintext, key);
-        System.out.println("Encrypted: " + encrypted);
+                default:
+                    break;
+            }
+        }
+        // plain = plain.replaceAll("\\s+", "");
+        // String encrypted = caesar.encrypt(plain, key);
+        // System.out.println("Encrypted: " + encrypted);
 
-        String decrypted = caesar.decrypt(encrypted, key);
-        System.out.println("Decrypted: " + decrypted);
+        // String decrypted = caesar.decrypt(encrypted, key);
+        // System.out.println("Decrypted: " + decrypted);
     }
 }
