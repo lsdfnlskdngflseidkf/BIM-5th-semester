@@ -1,4 +1,5 @@
 lis=[1,2,3,4,5,6,7,8,9]
+list2=list((1,2,3,4,5,6,7,8,9))
 lis.append(10)
 # print(lis) #append a single item at the end of the list 
 lis.insert(11,34) # add item into the list at a specifi pos with insert
