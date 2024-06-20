@@ -22,9 +22,11 @@ newset=set1.union(set2)
 print(newset)
 
 #7
+print("I'm removing mango")
 newset.remove("Mango")
 print(newset)
 newset.clear()
+print(newset)
 
 #8
 print(set1.union(set2))
@@ -34,5 +36,3 @@ print(set1.symmetric_difference(set2))
 print(set1.isdisjoint(set2))
 print(set1.issuperset(set2))
 print(set1.issubset(set2))
-
-
