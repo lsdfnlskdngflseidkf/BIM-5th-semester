@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Caesar {
     public String alphabets;
 
@@ -39,14 +41,17 @@ public class Caesar {
 
     public static void main(String[] args) {
         Caesar caesar = new Caesar();
-        String plaintext = "hello world";
-        int key = 3;
-
-        String encrypted = caesar.encrypt(plaintext, key);
-        System.out.println("Encrypted: " + encrypted);
-
-        String decrypted = caesar.decrypt(encrypted, key);
-        System.out.println("Decrypted: " + decrypted);
+        Scanner in = new Scanner(System.in);
+        try {
+            System.out.println("Enter the plaintext to encrypt:");
+            String plaintext = in.nextLine();
+            int key = 3;
+            String encrypted = caesar.encrypt(plaintext, key);
+            System.out.println("Encrypted: " + encrypted);
+            String decrypted = caesar.decrypt(encrypted, key);
+            System.out.println("Decrypted: " + decrypted);
+        } finally {
+            in.close();
+        }
     }
 }
-
