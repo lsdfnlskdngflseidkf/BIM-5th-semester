@@ -1,3 +1,4 @@
+#Accept a string from user and check if a is present in the string or not and print it
 def checkifa(Str):
     if 'a' in Str:
         print("a is present in the string")
