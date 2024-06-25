@@ -17,7 +17,6 @@ public class Mono {
             if (index != -1) {
                 cipher.append(this.key.charAt(index));
             } else {
-                // if the character is not available in the alphabets then append it as it is
                 cipher.append(currentChar);
             }
         }
@@ -43,7 +42,7 @@ public class Mono {
         try {
             System.out.println("Enter the Plain text:");
             String plain = in.nextLine().toLowerCase();
-            // plain = plain.replaceAll("\\s", "");
+            plain = plain.replaceAll("\\s", "");
 
             String key = "zxcvbnmlkjhgfdsaq wertyuiop"; // Ensure space is included if it's in alphabets
             Mono mon = new Mono(key);
