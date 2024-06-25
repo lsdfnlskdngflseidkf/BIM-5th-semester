@@ -1,8 +1,5 @@
 import java.util.Scanner;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 public class Caesar {
     public String alphabets;
 
@@ -44,12 +41,12 @@ public class Caesar {
 
     public static void main(String[] args) {
         Caesar caesar = new Caesar();
-<<<<<<< Updated upstream
         Scanner in = new Scanner(System.in);
         try {
             System.out.println("Enter the plaintext to encrypt:");
             String plaintext = in.nextLine();
-            int key = 3;
+            System.out.println("Enter the key");
+            int key = in.nextInt();
             String encrypted = caesar.encrypt(plaintext, key);
             System.out.println("Encrypted: " + encrypted);
             String decrypted = caesar.decrypt(encrypted, key);
@@ -57,14 +54,5 @@ public class Caesar {
         } finally {
             in.close();
         }
-=======
-        Scanner in =new Scanner(System.in);
-        String plaintext = in.nextLine();
-        String encrypted = caesar.encrypt(plaintext, key);
-        System.out.println("Encrypted: " + encrypted);
-
-        String decrypted = caesar.decrypt(encrypted, key);
-        System.out.println("Decrypted: " + decrypted);
->>>>>>> Stashed changes
     }
 }
