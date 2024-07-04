@@ -16,4 +16,3 @@ def divwr(a,b):
     return q,r
 a,b=divwr(20,3)
 print(f"{a} is the quotient\n{b} is the remainder")
-
