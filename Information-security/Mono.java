@@ -3,8 +3,8 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class Mono {
-    private String alphabets;
-    private String key;
+    private final String alphabets;
+    private final String key;
 
     public Mono(String userkey) {
         this.alphabets = "abcdefghijklmnopqrstuvwxyz ";
