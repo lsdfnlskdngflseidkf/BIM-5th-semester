@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Mono {
     private String alphabets;
@@ -7,6 +9,41 @@ public class Mono {
     public Mono(String userkey) {
         this.alphabets = "abcdefghijklmnopqrstuvwxyz ";
         this.key = userkey;
+    }
+
+    public static String getValidKey() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            String key;
+
+            while (true) {
+                System.out.println("Enter a key for the monoalphabetic cipher (26 unique letters):");
+                key = scanner.nextLine().toUpperCase();
+
+                if (isValidKey(key)) {
+                    break;
+                }
+                System.out.println("Invalid key. Please try again.");
+            }
+            return key;
+        } finally {
+            scanner.close();
+        }
+    }
+
+    private static boolean isValidKey(String key) {
+        if (key.length() != 26) {
+            return false;
+        }
+
+        Set<Character> uniqueChars = new HashSet<>();
+        for (char c : key.toCharArray()) {
+            if (!Character.isLetter(c) || !uniqueChars.add(c)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     String encrypt(String plain) {
@@ -43,8 +80,7 @@ public class Mono {
             System.out.println("Enter the Plain text:");
             String plain = in.nextLine().toLowerCase();
             plain = plain.replaceAll("\\s", "");
-
-            String key = "zxcvbnmlkjhgfdsaq wertyuiop"; // Ensure space is included if it's in alphabets
+            String key = getValidKey();
             Mono mon = new Mono(key);
 
             String cipher = mon.encrypt(plain);
