@@ -1,12 +1,12 @@
 #using args
-def packTuple(*thing):
-    for a in thing:
+def packTuple(*args):
+    for a in args:
         print(a)
 packTuple("this","is","an","Example of","Packed","Arguments")
 #using kwargs
-def packDict(**thingy):
-    for a in thingy.keys():
-        print(f"{a}:{thingy[a]}")
+def packDict(**kwargs):
+    for a in kwargs.keys():
+        print(f"{a}:{kwargs[a]}")
 packDict(FName="Ujwal",Lname="Parajuli")
 
 #returning multiple arguments
