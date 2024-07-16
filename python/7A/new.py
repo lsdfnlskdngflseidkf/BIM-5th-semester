@@ -1,3 +1,5 @@
+# create a class person that has a instance method setname tat accepts and sets the name given by the user and also a method to display the name
+#create another class studend that has an instance method setdetail that accepts age and class and sets the respective variables
 class person:
     # this is the first class
     def setname(self,name):
