@@ -1,4 +1,5 @@
 #WAP to calculate the factorial of a number
+print("\nto calculate the factorial of a number")
 def factorial(var):
     fact=1
     if var==0 or var==1:
