@@ -4,6 +4,9 @@ public class PlayFair {
     public String alphabets;
     public char[][] key;
 
+    public static String cleanInput(String input) {
+        return input.toLowerCase().replaceAll("[^a-z]", "").replaceAll("j","i");
+    }
     public int[] findCharIndex(char target) {
         if (target == 'j') {
             target = 'i'; // Treat 'i' and 'j' as the same
@@ -96,7 +99,7 @@ public class PlayFair {
         try {
             System.out.println("Enter the plaintext");
             char[][] thekey = {
-                    { 'u', 'j', 'w', 'a', 'l' },
+                    { 'u', 'i', 'w', 'a', 'l' },
                     { 'b', 'c', 'd', 'e', 'f' },
                     { 'g', 'h', 'k', 'm', 'n' },
                     { 'o', 'p', 'q', 'r', 's' },
@@ -104,9 +107,7 @@ public class PlayFair {
             };
             // System.out.println(thekey[1][0]);
             PlayFair pf = new PlayFair(thekey);
-            String plaintext = in.nextLine();
-            plaintext = plaintext.toLowerCase();
-            plaintext = plaintext.replaceAll("\\s", "");
+            String plaintext = cleanInput(in.nextLine());
             String validated = pf.validate(plaintext);
             String encrypted = pf.encrypt(validated);
             String decrypted = pf.decrypt(encrypted);
