@@ -12,13 +12,10 @@ public class KeywordMatrix {
             String kw = sc.next().toLowerCase();
             kw = kw.replaceAll("\\s", "");
             kw = kw.replaceAll("j", "i");
-
             Set<Character> keyword = new LinkedHashSet<>();
             for (int i = 0; i < kw.length(); i++) {
                 keyword.add(kw.charAt(i));
             }
-
-            // Convert keyword set back to string
             StringBuilder sb = new StringBuilder();
             for (Character ch : keyword) {
                 sb.append(ch);
@@ -33,7 +30,14 @@ public class KeywordMatrix {
                 char ch = kw.charAt(i);
                 ispresent[alphabets.indexOf(ch)] = true;
             }
+            StringBuilder s = new StringBuilder();
 
+            for (int i=0;i<alphabets.length();i++){
+                if(!ispresent[i]){
+                    s.append(alphabets.charAt(i));
+                }
+            }
+            alphabets=s.toString();
             // adding the keyword to the matrix
             char[][] key = new char[5][5];
             int kwi = 0;
@@ -54,13 +58,6 @@ public class KeywordMatrix {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
                     if (key[i][j] == '\u0000') {
-                        while (ispresent[alphIndex]) {
-                            alphIndex++;
-                            if (alphIndex >= alphabets.length()) {
-                                System.out.println("Not enough characters in alphabet for filling key matrix.");
-                                return;
-                            }
-                        }
                         key[i][j] = alphabets.charAt(alphIndex++);
                     }
                 }
