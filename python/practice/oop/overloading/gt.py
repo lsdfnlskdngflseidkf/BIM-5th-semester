@@ -11,8 +11,12 @@ class currency:
 
     def __gt__(one,two):
         return True if one.rupee>two.rupee else False
-money=currency(100)
-moni=currency(40)
+
+
+money=currency(100,100000)
+moni=currency(80,500000000000)
+print(money)
+print(moni)
 if(money>moni):
     print("Money is greater than moni")
 else:
