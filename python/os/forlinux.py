@@ -1,9 +1,9 @@
 #display the current directory with cwd
 import os
-cwd=os.getcwd()
-print(cwd)
+fd=os.getcwd()
+print(fd)
 #creating a new directory
-nd="f:/UjwalParajuli/python-class/python/test"
+nd="/home/nullproj/Documents/BIM-5th-semester/python/test"
 os.mkdir(nd)
 if(os.path.exists(nd)):
     print(f"The directory{nd} is real")
@@ -17,12 +17,12 @@ print(f"The current directory is {os.getcwd()}")
 fnames=os.listdir()
 print("File list in the folder are ",fnames)
 
-os.chdir(cwd)
-print(f"The directory has been now changed to {cwd}")
+os.chdir(fd)
+print(f"The directory has been now changed to {fd}")
 fnames=os.listdir()
 print("File list in the folder are ",fnames)
-ndr="F:/UjwalParajuli/python-class/python/testing"
-print(f"{ cwd} is the current directory ")
+ndr="/home/nullproj/Documents/BIM-5th-semester/python/test"
+print(f"{ fd} is the current directory ")
 os.rename(nd,ndr)
 if(os.path.exists(ndr)):
     print(f"Rename successful . The directory is now called {ndr}")
@@ -37,7 +37,7 @@ else:
 fnames=os.listdir()
 print("File list in the folder are ",fnames)
 
-os.chdir(cwd)
-print(f"The directory has been now changed to {cwd}")
+os.chdir(fd)
+print(f"The directory has been now changed to {fd}")
 fnames=os.listdir()
 print("File list in the folder are ",fnames)
