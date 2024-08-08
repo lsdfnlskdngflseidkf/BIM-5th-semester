@@ -16,5 +16,6 @@ select * from people
 """)
 rows=cursor.fetchall()
 print(rows)
+
 conn.commit()
 conn.close()
