@@ -1,7 +1,13 @@
 class distance:
     def __init__(self,km,m):
         self.km=km
-        self.m=m
+        if(m>1000):
+            rem=km/1000
+            self.km+=rem
+            self.m=m%1000
+        else:
+            self.m=m
+        
 
     def __lt__(one,two):
         return True if one.km<two.km else False

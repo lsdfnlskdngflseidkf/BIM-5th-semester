@@ -11,11 +11,11 @@ class father(person):
     def view(self):
         print(f"ID:{self.id}")
 
-class child(father,person):
+class child(father):
     def setdob(self,dob):
         self.dob=dob
     def show(self):
-        print(f"Age:{self.age}")
+        print(f"Age:{self.dob}")
 c1=child()
 c1.setdob('2023-16-25')
 c1.setid("F101")
