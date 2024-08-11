@@ -9,19 +9,19 @@ class Parent:
 
 class Child(Parent):
     def access_parent_vars(self):
-        print(f"Accessing protected variable from Child: {self._protected_var}")
+        print(f"protected var from Child: {self._protected_var}")
         try:
-            print(f"Accessing private variable from Child: {self.__private_var}")
+            print(f"private var from Child: {self.__private_var}")
         except AttributeError as e:
-            print(f"Error accessing private variable from Child: {e}")
+            print(f"Error : {e}")
     
     def display_vars(self):
         super().display_vars()
-        print(f"Accessing protected variable from Child's display_vars: {self._protected_var}")
+        print(f"protected var from Child's display_vars: {self._protected_var}")
         try:
-            print(f"Accessing private variable from Child's display_vars: {self.__private_var}")
+            print(f"private var from Child's display_vars: {self.__private_var}")
         except AttributeError as e:
-            print(f"Error accessing private variable from Child's display_vars: {e}")
+            print(f"Error display_vars: {e}")
 
 # Create an instance of Child
 child_instance = Child()
