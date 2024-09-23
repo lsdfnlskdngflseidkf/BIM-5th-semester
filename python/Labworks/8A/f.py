@@ -1,4 +1,5 @@
 class Parent:
+
     def __init__(self):
         self._protected_var = "I'm protected"
         self.__private_var = "I'm private"

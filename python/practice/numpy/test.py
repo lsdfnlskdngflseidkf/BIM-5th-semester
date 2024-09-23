@@ -36,8 +36,11 @@ print(a4)
 a5=ujwal.linspace(1,10,7)
 print(a5)
 
-a6=array1 = ujwal.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+a6=array1 = ujwal.array([[1, 2, 3, 4],
+                         [5, 6, 7, 8]])
 print(a6)
+
+
 
 a7=ujwal.zeros((2, 3))
 print(a7)
