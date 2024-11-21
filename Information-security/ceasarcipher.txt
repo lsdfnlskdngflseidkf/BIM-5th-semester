@@ -1,7 +1,0 @@
-hints on how to implement caesar cipher with java.
-get a string that has all the letters in the alphabets eg x=abcdefghijklmnopqrstuvwxyz
-loop runs till string.length()
-use the charat function to access the character at n places
-get index of the character with the index function eg. ind=x.indexof(z)
-for encryption:create a new string with the designated shifted indexes ciphertext[i]=ind+key
-for decryption: create a new string the same way bu deducting the key value plaintext[i]=ind-key
