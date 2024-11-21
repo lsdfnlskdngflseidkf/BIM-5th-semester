@@ -105,7 +105,6 @@ public class PlayFair {
                     { 'o', 'p', 'q', 'r', 's' },
                     { 't', 'v', 'x', 'y', 'z' }
             };
-            // System.out.println(thekey[1][0]);
             PlayFair pf = new PlayFair(thekey);
             String plaintext = cleanInput(in.nextLine());
             String validated = pf.validate(plaintext);
