@@ -25,6 +25,7 @@ grandfather(X,Z):-father(X,Y),parent(Y,Z).
 
 grandmother(X,Z):-mother(X,Y),parent(Y,Z).
 
-sister(X,Y):-parent(Z,X),parent(Z,Y),female(Y),x\==Y.
+sister(X,Y):-parent(Z,X),parent(Z,Y),female(Y),X\==Y.
 
 brother(X,Y):-parent(Z,X),parent(Z,Y),male(Y),X\==Y.
+
