@@ -1,17 +1,13 @@
-import java.util.Scanner;
-
 public class HillCipher {
 
-    // Function to multiply matrices and return the resulting vector
-    public static int[] matrixMultiply(int[][] keyMatrix, int[] vector) {
-        int[] result = new int[2];
-        for (int i = 0; i < 2; i++) {
-            result[i] = (keyMatrix[i][0] * vector[0] + keyMatrix[i][1] * vector[1]) % 26;
-        }
-        return result;
+    public static int charToInt(char c) {
+        return c - 'A';
     }
 
-    // Function to find the modular inverse of a number under modulo 26
+    public static char intToChar(int num) {
+        return (char) (num + 'A');
+    }
+
     public static int modInverse(int a, int m) {
         a = a % m;
         for (int x = 1; x < m; x++) {
@@ -19,92 +15,89 @@ public class HillCipher {
                 return x;
             }
         }
-        return 1; // If no modular inverse exists
+        return -1;
     }
 
-    // Function to find the determinant of a 2x2 matrix
-    public static int determinant(int[][] matrix) {
-        return (matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]) % 26;
-    }
-
-    // Function to find the inverse of a 2x2 matrix under modulo 26
-    public static int[][] inverseMatrix(int[][] matrix) {
-        int det = determinant(matrix);
+    public static int[][] matrixInverse(int[][] keyMatrix) {
+        int det =
+            (keyMatrix[0][0] * keyMatrix[1][1] -
+                keyMatrix[0][1] * keyMatrix[1][0]) %
+            26;
+        if (det < 0) det += 26;
         int detInverse = modInverse(det, 26);
+        if (detInverse == -1) return null;
 
-        int[][] adjugateMatrix = {
-            { matrix[1][1], -matrix[0][1] },
-            { -matrix[1][0], matrix[0][0] }
-        };
-
+        int[][] inverse = new int[2][2];
+        inverse[0][0] = (keyMatrix[1][1] * detInverse) % 26;
+        inverse[0][1] = (-keyMatrix[0][1] * detInverse) % 26;
+        inverse[1][0] = (-keyMatrix[1][0] * detInverse) % 26;
+        inverse[1][1] = (keyMatrix[0][0] * detInverse) % 26;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                adjugateMatrix[i][j] = (adjugateMatrix[i][j] * detInverse) % 26;
-                if (adjugateMatrix[i][j] < 0) {
-                    adjugateMatrix[i][j] += 26;
-                }
+                if (inverse[i][j] < 0) inverse[i][j] += 26;
             }
         }
-
-        return adjugateMatrix;
+        return inverse;
     }
 
-    // Function to encrypt the message
-    public static String encrypt(String message, int[][] keyMatrix) {
-        message = message.toLowerCase().replaceAll("[^a-z]", ""); // Standardize to lowercase and remove non-alphabetic characters
-        int length = message.length();
-        if (length % 2 != 0) {
-            message += "x"; // Padding with 'x' if the length of the message is odd
+    public static String encrypt(String plaintext, int[][] keyMatrix) {
+        int[] digraph = new int[2];
+        int[] result = new int[2];
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < plaintext.length(); i += 2) {
+            digraph[0] = charToInt(plaintext.charAt(i));
+            digraph[1] = charToInt(plaintext.charAt(i + 1));
+
+            for (int row = 0; row < 2; row++) {
+                result[row] =
+                    (keyMatrix[row][0] * digraph[0] +
+                        keyMatrix[row][1] * digraph[1]) %
+                    26;
+            }
+
+            sb.append(intToChar(result[0]));
+            sb.append(intToChar(result[1]));
         }
 
-        StringBuilder cipherText = new StringBuilder();
-
-        for (int i = 0; i < length; i += 2) {
-            int[] messageVector = { message.charAt(i) - 'a', message.charAt(i + 1) - 'a' };
-            int[] resultVector = matrixMultiply(keyMatrix, messageVector);
-            cipherText.append((char) (resultVector[0] + 'a')).append((char) (resultVector[1] + 'a'));
-        }
-
-        return cipherText.toString();
+        return sb.toString();
     }
 
-    // Function to decrypt the message
-    public static String decrypt(String cipherText, int[][] keyMatrix) {
-        int[][] inverseKeyMatrix = inverseMatrix(keyMatrix);
-
-        StringBuilder message = new StringBuilder();
-
-        for (int i = 0; i < cipherText.length(); i += 2) {
-            int[] cipherVector = { cipherText.charAt(i) - 'a', cipherText.charAt(i + 1) - 'a' };
-            int[] resultVector = matrixMultiply(inverseKeyMatrix, cipherVector);
-            message.append((char) (resultVector[0] + 'a')).append((char) (resultVector[1] + 'a'));
+    public static String decrypt(String ciphertext, int[][] keyMatrix) {
+        int[][] inverseMatrix = matrixInverse(keyMatrix);
+        if (inverseMatrix == null) {
+            return "Decryption not possible";
         }
 
-        return message.toString();
+        int[] digraph = new int[2];
+        int[] result = new int[2];
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < ciphertext.length(); i += 2) {
+            digraph[0] = charToInt(ciphertext.charAt(i));
+            digraph[1] = charToInt(ciphertext.charAt(i + 1));
+
+            for (int row = 0; row < 2; row++) {
+                result[row] =
+                    (inverseMatrix[row][0] * digraph[0] +
+                        inverseMatrix[row][1] * digraph[1]) %
+                    26;
+                if (result[row] < 0) result[row] += 26;
+            }
+
+            sb.append(intToChar(result[0]));
+            sb.append(intToChar(result[1]));
+        }
+
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter the 2x2 key matrix (4 integers): ");
-        int[][] keyMatrix = new int[2][2];
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                keyMatrix[i][j] = scanner.nextInt();
-            }
-        }
-
-        scanner.nextLine(); // Consume newline left-over
-
-        System.out.println("Enter the message to be encrypted: ");
-        String message = scanner.nextLine();
-
-        String encryptedMessage = encrypt(message, keyMatrix);
-        System.out.println("Encrypted Message: " + encryptedMessage);
-
-        String decryptedMessage = decrypt(encryptedMessage, keyMatrix);
-        System.out.println("Decrypted Message: " + decryptedMessage);
-
-        scanner.close();
+        int[][] keyMatrix = { { 6, 5 }, { 1, 12 } };
+        String plaintext = "ILOVETOGAPARTY";
+        String encryptedText = encrypt(plaintext, keyMatrix);
+        String decryptedText = decrypt(encryptedText, keyMatrix);
+        System.out.println("Encrypted text: " + encryptedText);
+        System.out.println("Decrypted text: " + decryptedText);
     }
 }

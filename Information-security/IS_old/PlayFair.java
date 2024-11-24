@@ -1,17 +1,12 @@
 import java.util.Scanner;
 
 public class PlayFair {
-
     public String alphabets;
     public char[][] key;
 
     public static String cleanInput(String input) {
-        return input
-            .toLowerCase()
-            .replaceAll("[^a-z]", "")
-            .replaceAll("j", "i");
+        return input.toLowerCase().replaceAll("[^a-z]", "").replaceAll("j","i");
     }
-
     public int[] findCharIndex(char target) {
         if (target == 'j') {
             target = 'i'; // Treat 'i' and 'j' as the same
@@ -27,6 +22,7 @@ public class PlayFair {
     }
 
     PlayFair(char[][] userkey) {
+        this.alphabets = "abcdefghiklmnopqrstuvwxyz"; // Removed 'j'
         this.key = userkey;
     }
 
@@ -81,13 +77,13 @@ public class PlayFair {
             int[] index1 = findCharIndex(plain.charAt(i));
             int[] index2 = findCharIndex(plain.charAt(i + 1));
             if (index1[0] == index2[0]) {
-                index1[1] = (index1[1] - 1 + 5) % 5; // Fixed negative modulus
-                index2[1] = (index2[1] - 1 + 5) % 5; // Fixed negative modulus
+                index1[1] = (index1[1] - 1) % 5;
+                index2[1] = (index2[1] - 1) % 5;
                 cipher.append(this.key[index1[0]][index1[1]]);
                 cipher.append(this.key[index2[0]][index2[1]]);
             } else if (index1[1] == index2[1]) {
-                index1[0] = (index1[0] - 1 + 5) % 5; // Fixed negative modulus
-                index2[0] = (index2[0] - 1 + 5) % 5; // Fixed negative modulus
+                index1[0] = (index1[0] - 1) % 5;
+                index2[0] = (index2[0] - 1) % 5;
                 cipher.append(this.key[index1[0]][index1[1]]);
                 cipher.append(this.key[index2[0]][index2[1]]);
             } else {
@@ -103,12 +99,13 @@ public class PlayFair {
         try {
             System.out.println("Enter the plaintext");
             char[][] thekey = {
-                { 'u', 'i', 'w', 'a', 'l' },
-                { 'b', 'c', 'd', 'e', 'f' },
-                { 'g', 'h', 'k', 'm', 'n' },
-                { 'o', 'p', 'q', 'r', 's' },
-                { 't', 'v', 'x', 'y', 'z' },
+                    { 'u', 'i', 'w', 'a', 'l' },
+                    { 'b', 'c', 'd', 'e', 'f' },
+                    { 'g', 'h', 'k', 'm', 'n' },
+                    { 'o', 'p', 'q', 'r', 's' },
+                    { 't', 'v', 'x', 'y', 'z' }
             };
+            // System.out.println(thekey[1][0]);
             PlayFair pf = new PlayFair(thekey);
             String plaintext = cleanInput(in.nextLine());
             String validated = pf.validate(plaintext);
