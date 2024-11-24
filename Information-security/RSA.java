@@ -10,9 +10,8 @@ boolean testGCD(int a, int b){
     if(b==1){
         return true;
     }
-    else{
+    else
          return false;
-    }
 }
 int multiInverse(int a, int n){
     for(int i=1;;i++){
