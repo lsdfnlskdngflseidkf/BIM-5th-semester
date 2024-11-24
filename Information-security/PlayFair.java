@@ -14,7 +14,7 @@ public class PlayFair {
 
     public int[] findCharIndex(char target) {
         if (target == 'j') {
-            target = 'i'; // Treat 'i' and 'j' as the same
+            target = 'i'; 
         }
         for (int i = 0; i < key.length; i++) {
             for (int j = 0; j < key[i].length; j++) {
