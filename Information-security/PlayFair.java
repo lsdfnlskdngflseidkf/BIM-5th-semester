@@ -81,13 +81,13 @@ public class PlayFair {
             int[] index1 = findCharIndex(plain.charAt(i));
             int[] index2 = findCharIndex(plain.charAt(i + 1));
             if (index1[0] == index2[0]) {
-                index1[1] = (index1[1] - 1 + 5) % 5; // Fixed negative modulus
-                index2[1] = (index2[1] - 1 + 5) % 5; // Fixed negative modulus
+                index1[1] = (index1[1] - 1 + 5) % 5;
+                index2[1] = (index2[1] - 1 + 5) % 5; 
                 cipher.append(this.key[index1[0]][index1[1]]);
                 cipher.append(this.key[index2[0]][index2[1]]);
             } else if (index1[1] == index2[1]) {
-                index1[0] = (index1[0] - 1 + 5) % 5; // Fixed negative modulus
-                index2[0] = (index2[0] - 1 + 5) % 5; // Fixed negative modulus
+                index1[0] = (index1[0] - 1 + 5) % 5; 
+                index2[0] = (index2[0] - 1 + 5) % 5; 
                 cipher.append(this.key[index1[0]][index1[1]]);
                 cipher.append(this.key[index2[0]][index2[1]]);
             } else {
