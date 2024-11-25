@@ -1,32 +1,48 @@
-import java.util.*;
+import java.lang.Math;
+import java.util.Scanner;
 
 public class PrimeNumbers {
 
-    public static List<Integer> sieveOfEratosthenes(int n) {
-        boolean[] isPrime = new boolean[n + 1];
-        Arrays.fill(isPrime, true);
-        isPrime[0] = isPrime[1] = false;
-
-        for (int i = 2; i * i <= n; i++) {
-            if (isPrime[i]) {
-                for (int j = i * i; j <= n; j += i) {
-                    isPrime[j] = false;
-                }
-            }
+    public static boolean isPrime(int number) {
+        // Handle edge cases
+        if (number <= 1) {
+            return false;
+        }
+        if (number == 2) {
+            return true; // 2 is the only even prime number
+        }
+        if (number % 2 == 0) {
+            return false; // Exclude other even numbers
         }
 
-        List<Integer> primes = new ArrayList<>();
-        for (int i = 2; i <= n; i++) {
-            if (isPrime[i]) {
-                primes.add(i);
+        for (int i = 3; i <= Math.sqrt(number) + 1; i += 2) {
+            if (number % i == 0) {
+                return false;
             }
         }
-        return primes;
+        return true;
     }
 
     public static void main(String[] args) {
-        int n = 100;
-        List<Integer> primes = sieveOfEratosthenes(n);
-        System.out.println("Prime numbers up to " + n + ": " + primes);
+        Scanner in = new Scanner(System.in);
+        System.out.println(
+            "Enter the number up to which prime numbers are to be listed:"
+        );
+        int n = in.nextInt();
+        int size = (int) (n / Math.log(n));
+        size += 3;
+        int[] primenumbers = new int[size];
+        int arrayindex = 0;
+        for (int i = 0; i <= n; i++) {
+            if (isPrime(i)) {
+                primenumbers[arrayindex] = i;
+                arrayindex++;
+            }
+        }
+        System.out.print("The prime numbers up to" + n + " are:");
+        for (int i = 0; i < size; i++) {
+            System.out.print(primenumbers[i] + " ");
+        }
+        in.close();
     }
 }
