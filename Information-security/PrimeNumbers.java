@@ -9,10 +9,10 @@ public class PrimeNumbers {
             return false;
         }
         if (number == 2) {
-            return true; // 2 is the only even prime number
+            return true;
         }
         if (number % 2 == 0) {
-            return false; // Exclude other even numbers
+            return false;
         }
 
         for (int i = 3; i <= Math.sqrt(number) + 1; i += 2) {
