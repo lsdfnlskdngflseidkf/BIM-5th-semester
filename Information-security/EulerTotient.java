@@ -24,5 +24,6 @@ public class EulerTotient {
             ") = " +
             eulerTotient(number)
         );
+        sc.close();
     }
 }
