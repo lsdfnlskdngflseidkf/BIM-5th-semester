@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class PlayFair {
 
-    public String alphabets;
     public char[][] key;
 
     public static String cleanInput(String input) {
@@ -13,9 +12,6 @@ public class PlayFair {
     }
 
     public int[] findCharIndex(char target) {
-        if (target == 'j') {
-            target = 'i'; 
-        }
         for (int i = 0; i < key.length; i++) {
             for (int j = 0; j < key[i].length; j++) {
                 if (key[i][j] == target) {
@@ -52,50 +48,46 @@ public class PlayFair {
         return plain;
     }
 
-    public String encrypt(String plain) {
-        StringBuilder cipher = new StringBuilder();
-        for (int i = 0; i < plain.length(); i += 2) {
-            int[] index1 = findCharIndex(plain.charAt(i));
-            int[] index2 = findCharIndex(plain.charAt(i + 1));
-            if (index1[0] == index2[0]) {
-                index1[1] = (index1[1] + 1) % 5;
-                index2[1] = (index2[1] + 1) % 5;
-                cipher.append(this.key[index1[0]][index1[1]]);
-                cipher.append(this.key[index2[0]][index2[1]]);
-            } else if (index1[1] == index2[1]) {
-                index1[0] = (index1[0] + 1) % 5;
-                index2[0] = (index2[0] + 1) % 5;
-                cipher.append(this.key[index1[0]][index1[1]]);
-                cipher.append(this.key[index2[0]][index2[1]]);
-            } else {
-                cipher.append(this.key[index1[0]][index2[1]]);
-                cipher.append(this.key[index2[0]][index1[1]]);
+    public String processText(String text, boolean isEncrypt) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < text.length(); i += 2) {
+            int[] index1 = findCharIndex(text.charAt(i));
+            int[] index2 = findCharIndex(text.charAt(i + 1));
+
+            if (index1[0] == index2[0]) { // Same row
+                if (isEncrypt) {
+                    index1[1] = (index1[1] + 1) % 5;
+                    index2[1] = (index2[1] + 1) % 5;
+                } else {
+                    index1[1] = (index1[1] - 1 + 5) % 5;
+                    index2[1] = (index2[1] - 1 + 5) % 5;
+                }
+            } else if (index1[1] == index2[1]) { // Same column
+                if (isEncrypt) {
+                    index1[0] = (index1[0] + 1) % 5;
+                    index2[0] = (index2[0] + 1) % 5;
+                } else {
+                    index1[0] = (index1[0] - 1 + 5) % 5;
+                    index2[0] = (index2[0] - 1 + 5) % 5;
+                }
+            } else { // Rectangle rule
+                int temp = index1[1];
+                index1[1] = index2[1];
+                index2[1] = temp;
             }
+
+            result.append(this.key[index1[0]][index1[1]]);
+            result.append(this.key[index2[0]][index2[1]]);
         }
-        return cipher.toString();
+        return result.toString();
     }
 
-    public String decrypt(String plain) {
-        StringBuilder cipher = new StringBuilder();
-        for (int i = 0; i < plain.length(); i += 2) {
-            int[] index1 = findCharIndex(plain.charAt(i));
-            int[] index2 = findCharIndex(plain.charAt(i + 1));
-            if (index1[0] == index2[0]) {
-                index1[1] = (index1[1] - 1 + 5) % 5;
-                index2[1] = (index2[1] - 1 + 5) % 5; 
-                cipher.append(this.key[index1[0]][index1[1]]);
-                cipher.append(this.key[index2[0]][index2[1]]);
-            } else if (index1[1] == index2[1]) {
-                index1[0] = (index1[0] - 1 + 5) % 5; 
-                index2[0] = (index2[0] - 1 + 5) % 5; 
-                cipher.append(this.key[index1[0]][index1[1]]);
-                cipher.append(this.key[index2[0]][index2[1]]);
-            } else {
-                cipher.append(this.key[index1[0]][index2[1]]);
-                cipher.append(this.key[index2[0]][index1[1]]);
-            }
-        }
-        return cipher.toString();
+    public String encrypt(String plain) {
+        return processText(plain, true);
+    }
+
+    public String decrypt(String cipher) {
+        return processText(cipher, false);
     }
 
     public static void main(String[] args) {

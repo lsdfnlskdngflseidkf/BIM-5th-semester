@@ -4,15 +4,7 @@ public class CaesarCipher {
         StringBuilder encryptedText = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char currentChar = text.charAt(i);
-            if (currentChar >= 'A' && currentChar <= 'Z') {
-                char encryptedChar = (char) (((currentChar - 'A' + shift) %
-                        26) +
-                    'A');
-                if (encryptedChar < 'A') {
-                    encryptedChar += 26;
-                }
-                encryptedText.append(encryptedChar);
-            } else if (currentChar >= 'a' && currentChar <= 'z') {
+            if (currentChar >= 'a' && currentChar <= 'z') {
                 char encryptedChar = (char) (((currentChar - 'a' + shift) %
                         26) +
                     'a');
@@ -32,7 +24,7 @@ public class CaesarCipher {
     }
 
     public static void main(String[] args) {
-        String originalText = "Hello World!";
+        String originalText = "Hello World!".toLowerCase();
         int shift = 3;
 
         String encryptedText = encrypt(originalText, shift);
