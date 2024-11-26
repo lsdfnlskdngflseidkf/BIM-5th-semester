@@ -53,23 +53,18 @@ public class PlayFair {
         for (int i = 0; i < text.length(); i += 2) {
             int[] index1 = findCharIndex(text.charAt(i));
             int[] index2 = findCharIndex(text.charAt(i + 1));
-
+            int shift;
+            if (isEncrypt) {
+                shift = 1;
+            } else {
+                shift = 4;
+            }
             if (index1[0] == index2[0]) { // Same row
-                if (isEncrypt) {
-                    index1[1] = (index1[1] + 1) % 5;
-                    index2[1] = (index2[1] + 1) % 5;
-                } else {
-                    index1[1] = (index1[1] - 1 + 5) % 5;
-                    index2[1] = (index2[1] - 1 + 5) % 5;
-                }
+                index1[1] = (index1[1] + shift) % 5;
+                index2[1] = (index2[1] + shift) % 5;
             } else if (index1[1] == index2[1]) { // Same column
-                if (isEncrypt) {
-                    index1[0] = (index1[0] + 1) % 5;
-                    index2[0] = (index2[0] + 1) % 5;
-                } else {
-                    index1[0] = (index1[0] - 1 + 5) % 5;
-                    index2[0] = (index2[0] - 1 + 5) % 5;
-                }
+                index1[0] = (index1[0] + shift) % 5;
+                index2[0] = (index2[0] + shift) % 5;
             } else { // Rectangle rule
                 int temp = index1[1];
                 index1[1] = index2[1];
