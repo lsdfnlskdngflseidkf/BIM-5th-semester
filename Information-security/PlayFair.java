@@ -50,15 +50,16 @@ public class PlayFair {
 
     public String processText(String text, boolean isEncrypt) {
         StringBuilder result = new StringBuilder();
+        int shift;
+        if (isEncrypt) {
+            shift = 1;
+        } else {
+            shift = 4;
+        }
         for (int i = 0; i < text.length(); i += 2) {
             int[] index1 = findCharIndex(text.charAt(i));
             int[] index2 = findCharIndex(text.charAt(i + 1));
-            int shift;
-            if (isEncrypt) {
-                shift = 1;
-            } else {
-                shift = 4;
-            }
+
             if (index1[0] == index2[0]) { // Same row
                 index1[1] = (index1[1] + shift) % 5;
                 index2[1] = (index2[1] + shift) % 5;
@@ -70,7 +71,6 @@ public class PlayFair {
                 index1[1] = index2[1];
                 index2[1] = temp;
             }
-
             result.append(this.key[index1[0]][index1[1]]);
             result.append(this.key[index2[0]][index2[1]]);
         }
@@ -87,25 +87,22 @@ public class PlayFair {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        try {
-            System.out.println("Enter the plaintext");
-            char[][] thekey = {
-                { 'u', 'i', 'w', 'a', 'l' },
-                { 'b', 'c', 'd', 'e', 'f' },
-                { 'g', 'h', 'k', 'm', 'n' },
-                { 'o', 'p', 'q', 'r', 's' },
-                { 't', 'v', 'x', 'y', 'z' },
-            };
-            PlayFair pf = new PlayFair(thekey);
-            String plaintext = cleanInput(in.nextLine());
-            String validated = pf.validate(plaintext);
-            String encrypted = pf.encrypt(validated);
-            String decrypted = pf.decrypt(encrypted);
-            System.out.println("Validated text: " + validated);
-            System.out.println("Encrypted text: " + encrypted);
-            System.out.println("Decrypted text: " + decrypted);
-        } finally {
-            in.close();
-        }
+        System.out.println("Enter the plaintext");
+        char[][] thekey = {
+            { 'u', 'i', 'w', 'a', 'l' },
+            { 'b', 'c', 'd', 'e', 'f' },
+            { 'g', 'h', 'k', 'm', 'n' },
+            { 'o', 'p', 'q', 'r', 's' },
+            { 't', 'v', 'x', 'y', 'z' },
+        };
+        PlayFair pf = new PlayFair(thekey);
+        String plaintext = cleanInput(in.nextLine());
+        String validated = pf.validate(plaintext);
+        String encrypted = pf.encrypt(validated);
+        String decrypted = pf.decrypt(encrypted);
+        System.out.println("Validated text: " + validated);
+        System.out.println("Encrypted text: " + encrypted);
+        System.out.println("Decrypted text: " + decrypted);
+        in.close();
     }
 }
