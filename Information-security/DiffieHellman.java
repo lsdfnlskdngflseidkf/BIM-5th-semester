@@ -42,14 +42,6 @@ public class DiffieHellman {
             "Shared secret key computed by Bob: " + sharedKeyBob
         );
 
-        if (sharedKeyAlice == sharedKeyBob) {
-            System.out.println(
-                "The shared secret key is the same for both Alice and Bob."
-            );
-        } else {
-            System.out.println("There is an error in key computation.");
-        }
-
         in.close();
     }
 }
