@@ -22,21 +22,16 @@ public class Hillcipher {
         int detInverse = modInverse(det, 26);
         if (detInverse == -1) return null;
 
-        int[][] inverse = {
-            {
-                (keyMatrix[1][1] * detInverse) % 26,
-                (-keyMatrix[0][1] * detInverse) % 26,
-            },
-            {
-                (-keyMatrix[1][0] * detInverse) % 26,
-                (keyMatrix[0][0] * detInverse) % 26,
-            },
-        };
-
-        for (int[] row : inverse) for (int j = 0; j < 2; j++) if (
-            row[j] < 0
-        ) row[j] += 26;
-
+        int[][] inverse = new int[2][2];
+        inverse[0][0] = (keyMatrix[1][1] * detInverse) % 26;
+        inverse[0][1] = (-keyMatrix[0][1] * detInverse) % 26;
+        inverse[1][0] = (-keyMatrix[1][0] * detInverse) % 26;
+        inverse[1][1] = (keyMatrix[0][0] * detInverse) % 26;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (inverse[i][j] < 0) inverse[i][j] += 26;
+            }
+        }
         return inverse;
     }
 
@@ -71,7 +66,7 @@ public class Hillcipher {
 
     public static void main(String[] args) {
         int[][] keyMatrix = { { 6, 5 }, { 1, 12 } };
-        String plaintext = "ILOVETOGAPARTY";
+        String plaintext = "IDONTHATETOGAPARTY";
         String encryptedText = encrypt(plaintext, keyMatrix);
         String decryptedText = decrypt(encryptedText, keyMatrix);
         System.out.println("Encrypted text: " + encryptedText);
