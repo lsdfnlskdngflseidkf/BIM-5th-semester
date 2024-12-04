@@ -1,7 +1,7 @@
 % Base case: Moving 1 disk from Source to Destination.
 hanoi(1, Source, Destination, _) :-
     write('Move disk from '), write(Source),
-    write(' to '), write(Destination), nl.
+    write(' to '), write('Destination'), nl.
 
 % Recursive case: Moving N disks.
 hanoi(N, Source, Destination, Auxiliary) :-
