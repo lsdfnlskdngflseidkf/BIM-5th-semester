@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class PrimeNumbers {
 
     public static boolean isPrime(int number) {
-        // Handle edge cases
         if (number <= 1) {
             return false;
         }
@@ -29,8 +28,7 @@ public class PrimeNumbers {
             "Enter the number up to which prime numbers are to be listed:"
         );
         int n = in.nextInt();
-        int size = (int) (n / Math.log(n));
-        size += 3;
+        int size = n / 2;
         int[] primenumbers = new int[size];
         int arrayindex = 0;
         for (int i = 0; i <= n; i++) {
@@ -39,9 +37,11 @@ public class PrimeNumbers {
                 arrayindex++;
             }
         }
-        System.out.print("The prime numbers up to" + n + " are:");
-        for (int i = 0; i < size; i++) {
+        System.out.print("The prime numbers up to " + n + " are:");
+        int i = 0;
+        while (primenumbers[i] != 0) {
             System.out.print(primenumbers[i] + " ");
+            i++;
         }
         in.close();
     }
