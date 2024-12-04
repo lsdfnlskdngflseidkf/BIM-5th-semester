@@ -2,15 +2,6 @@ import java.util.Scanner;
 
 public class EulerTheorem {
 
-    public static int gcd(int a, int b) {
-        while (b != 0) {
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
-        return a;
-    }
-
     public static int phi(int n) {
         int result = n;
         for (int p = 2; p * p <= n; p++) {
@@ -28,7 +19,12 @@ public class EulerTheorem {
     }
 
     public static boolean areRelativelyPrime(int a, int n) {
-        return gcd(a, n) == 1;
+        int powe = phi(n);
+        if ((int) (Math.pow(a, powe)) % n == 1) {
+            return true;
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
