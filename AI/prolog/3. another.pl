@@ -1,7 +1,7 @@
 flower(lily).
 flower(lotus).
 flower(daisy).
-flower(dahila).
+flower(Dahila).
 
 fruit(mango).
 fruit(papaya).
@@ -9,9 +9,9 @@ fruit(pomegranate).
 fruit(watermelon).
 
 likes(ram,mango).
-likes(ram,lotus).
+likes(ram,Lotus).
 likes(sital,papaya).
 likes(sital,watermelon).
+likes(ram,dahila).
 likes(isita,X):-fruit(X).
 likes(isita,X):-flower(X).
-likes(ram,dahila).
