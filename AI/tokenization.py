@@ -1,42 +1,45 @@
-def tokenize_text(text):
-    # Sentence tokenization based on periods, exclamation marks, and question marks
-    sentences = []
-    temp_sentence = ""
-    for char in text:
-        temp_sentence += char
-        if char in ".!?":
-            sentences.append(temp_sentence.strip())
-            temp_sentence = ""
-    if temp_sentence:  # Add the last sentence if there's no punctuation at the end
-        sentences.append(temp_sentence.strip())
+text = "Hello, how are you? I'm learning NLP."
 
-    # Word tokenization by splitting on spaces and handling punctuation
-    words = []
+# Combined Sentence and Word Tokenization
+def tokenize(text):
+    sentences = []  # List to store sentences
+    words_in_sentences = []  # List to store words in each sentence
+
+    # Split text into sentences (basic split by punctuation)
+    sentence = ""
+    punctuation = ".!?"
+
+    for char in text:
+        sentence += char
+        if char in punctuation:
+            sentences.append(sentence.strip())
+            sentence = ""  # Reset sentence for the next one
+
+    if sentence:  # If there's any remaining sentence, add it
+        sentences.append(sentence.strip())
+
+    # Now, tokenize words in each sentence
     for sentence in sentences:
+        words = []
         word = ""
         for char in sentence:
-            if char.isalnum():  # Include letters and numbers
+            if char.isalnum() or char == "'":  # Keep alphanumeric and apostrophes
                 word += char
-            elif word:  # Word ends at punctuation or space
+            elif word:  # When we hit a non-alphanumeric character, store the word
                 words.append(word)
-                word = ""
-        if word:  # Add the last word in the sentence
+                word = ""  # Reset word
+
+        if word:  # If there's any leftover word, add it
             words.append(word)
 
-    return {
-        "sentences": sentences,
-        "words": words
-    }
+        words_in_sentences.append(words)  # Store words of this sentence
 
-# Example usage
-if __name__ == "__main__":
-    input_text = "Hello world! NLP is fascinating. Let's tokenize this text."
-    tokens = tokenize_text(input_text)
+    return sentences, words_in_sentences
 
-    print("Sentences:")
-    for sentence in tokens["sentences"]:
-        print(f" - {sentence}")
+# Tokenizing the example text
+sentences, words_in_sentences = tokenize(text)
 
-    print("\nWords:")
-    for word in tokens["words"]:
-        print(f" - {word}")
+print("Sentences:")
+print(sentences)
+print("\nWords in each sentence:")
+print(words_in_sentences)

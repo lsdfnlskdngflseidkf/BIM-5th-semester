@@ -18,7 +18,6 @@ def f(x):
     return -x**2 + 4*x  # Example function: f(x) = -x^2 + 4x
 
 # Main program
-if __name__ == "__main__":
-    initial_solution = 0  # Starting point for the search
-    best_x = hill_climbing(f, initial_solution)
-    print(f"Best x: {best_x}, f(x): {f(best_x)}")
+initial_solution = 0  # Starting point for the search
+best_x = hill_climbing(f, initial_solution)
+print(f"Best x: {best_x}, f(x): {f(best_x)}")

@@ -1,23 +1,30 @@
-class currency:
-    def __init__(self,rupee,paisa):
-        self.rupee=rupee
-        if paisa>100:
-            quo=paisa/100
-            self.rupee+quo
-            paisa=paisa%100
-            self.paisa=paisa
-        else:
-            self.paisa=paisa
+class Currency:
+    def __init__(self, rupee, paisa):
+        self.rupee = rupee + paisa // 100
+        self.paisa = paisa % 100
 
-    def __gt__(one,two):
-        return True if one.rupee>two.rupee else False
+    def __add__(self, other):
+        newr = self.rupee + other.rupee
+        newp = self.paisa + other.paisa
+        return Currency(newr, newp)
 
+    def __mul__(self, other):
+        newr = self.rupee * other.rupee
+        newp = self.paisa * other.paisa
+        return Currency(newr, newp)
 
-o1=currency(100,100000)
-o2=currency(80,500000000000)
-print(o1)
-print(o2)
-if(o1>o2):
-    print("o1 is greater than o2")
-else:
-    print("o2 is greater than o1")
+    def __eq__(self, other):
+        return self.rupee == other.rupee and self.paisa == other.paisa
+
+    def display(self):
+        return f"{self.rupee} rupee(s) and {self.paisa} paisa"
+currency1 = Currency(5, 120)
+currency2 = Currency(3, 96)
+print("Before operations:")
+print(f"First: {currency1.display()}")
+print(f"Second: {currency2.display()}")
+
+print("After operations:")
+print(f"Sum: {(currency1 + currency2).display()}")
+print(f"Product: {(currency1 * currency2).display()}")
+print(f"Equality: {currency1 == currency2}")

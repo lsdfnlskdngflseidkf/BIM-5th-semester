@@ -18,9 +18,9 @@ class SimpleAgent:
     def is_goal_reached(self):
         # Check if the agent has reached the goal
         return self.position == self.goal
-start_position = 0
-goal_position = 5
-agent = SimpleAgent(start_position, goal_position)
+start_position = 8
+goal= 1
+agent = SimpleAgent(start_position, goal)
 steps = 0
 while not agent.is_goal_reached():
     print(f"Step {steps}: Agent is at position {agent.perceive()}")

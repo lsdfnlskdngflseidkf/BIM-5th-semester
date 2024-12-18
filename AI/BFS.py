@@ -1,4 +1,4 @@
-def bfs_tree(tree, start='r'):
+def bfs_tree(tree, start=0):
     queue = [start]
     traversal = []
     visited = set()
@@ -13,17 +13,15 @@ def bfs_tree(tree, start='r'):
             if child not in visited:
                 queue.append(child)
     return traversal
-tree = {
-    'r': ['a', 'b'],
-    'a': ['c'],
-    'b': ['g'],
-    'c': ['f', 'd'],
-    'g': ['i'],
-    'd': [],
-    'f': ['k'],
-    'i': [],
-    'k': []
-}
-traversal = bfs_tree(tree, 'r')
+
+graph = [
+    [1, 3],  # Neighbors of vertex 0
+    [0, 2],  # Neighbors of vertex 1
+    [1, 4],  # Neighbors of vertex 2
+    [0, 5],  # Neighbors of vertex 3
+    [2, 5],  # Neighbors of vertex 4
+    [3, 4]   # Neighbors of vertex 5
+]
+traversal = bfs_tree(graph)
 print("\nComplete BFS traversal order:")
-print(" -> ".join(traversal))
+print(" -> ".join(map(str,traversal)))
