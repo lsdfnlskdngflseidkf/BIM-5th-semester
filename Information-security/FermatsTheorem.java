@@ -16,6 +16,7 @@ public class FermatsTheorem {
     }
 
     public static boolean isPrime(long p) {
+        if (p <= 1 || p == 4) return false;
         if (p <= 1) return false;
         for (long a = 2; a < Math.min(p, 20); a++) {
             if (modExponentiation(a, p - 1, p) != 1) {

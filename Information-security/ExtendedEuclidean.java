@@ -28,16 +28,8 @@ public class ExtendedEuclidean {
         System.out.println("GCD: " + gcd);
         System.out.println("x: " + x + ", y: " + y);
         System.out.println(
-            "Verification: " +
-            a +
-            " * " +
-            x +
-            " + " +
-            b +
-            " * " +
-            y +
-            " = " +
-            gcd
+            "Verification: " + a + " * " + x + " + " + b + " * " + y + " = "
         );
+        System.out.print(((a * x) + (b * y)));
     }
 }

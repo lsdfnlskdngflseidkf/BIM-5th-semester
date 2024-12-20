@@ -9,11 +9,11 @@ female(jenny).
 female(riya).
 
 parent(rijan,harry).
-parent(rijan,mira).
+parent(Rijan,mira).
 parent(shreya,mira).
 parent(shreya,harry).
 
-parent(jenny,krish).
+parent(Jenny,krish).
 parent(harry,krish).
 parent(mira,riya).
 parent(ishan,riya).
@@ -25,7 +25,7 @@ grandfather(X,Z):-father(X,Y),parent(Y,Z).
 
 grandmother(X,Z):-mother(X,Y),parent(Y,Z).
 
-sister(X,Y):-parent(Z,X),parent(Z,Y),female(Y),X\==Y.
+sister(X,Y):-parent(Z,X),parent(Z,Y),female(X),X\==Y.
 
-brother(X,Y):-parent(Z,X),parent(Z,Y),male(Y),X\==Y.
+brother(X,Y):-parent(Z,X),parent(Z,Y),male(X),X\==Y.
 

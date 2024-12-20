@@ -1,7 +1,7 @@
 fname="file.txt"
 this=open(fname,'r')
 print(this.read())
-this="/home/nullproj/Documents/BIM-5th-semester/python/practice/files/this.txt"
+this="/home/nullproj/Documents/BIM-5th-semester/python/file.txt"
 fil=open(this,'r')
 print(fil.read())
 fil.close()
